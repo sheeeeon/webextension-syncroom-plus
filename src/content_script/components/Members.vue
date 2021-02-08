@@ -6,20 +6,20 @@
     .members__item__right
       .members__item__right__name(:class="{'members__item__right__name--favorite': $store.getters['favoriteMembers/members'].some(m => m.memberName === member.memberName)}")
         template(v-if="member.memberName.length === 0")
-          | [仮入室]
+          | [임시 입장]
 
         template(v-else)
           span.members__item__right__name__text
             span(v-html="twitterIdToLink(member.memberName)")
 
-          b-tooltip(label='オンライン時に通知を受け取れます', position="is-top", type="is-light")
+          b-tooltip(label='온라인 상태일 때 알림을 받습니다', position="is-top", type="is-light")
             a.members__item__right__name__add-notification(@click="$store.dispatch('notificationOnlineMembers/toggle', {memberName: member.memberName, roomCreateTime})")
               template(v-if="$store.getters['notificationOnlineMembers/members'].some(m => m.memberName === member.memberName)")
                 b-icon.members__item__right__name__add-notification__on(icon='bell')
               template(v-else)
                 b-icon(icon='bell-slash')
 
-          b-tooltip(label='見つけやすいように表示を目立たせます', position="is-top", type="is-light")
+          b-tooltip(label='잘 보이도록 하이라이트 표시를 합니다', position="is-top", type="is-light")
             a.members__item__right__name__add-favorite(@click="$store.dispatch('favoriteMembers/toggleFavorite', member.memberName)")
               template(v-if="$store.getters['favoriteMembers/members'].some(m => m.memberName === member.memberName)")
                 b-icon.members__item__right__name__add-favorite__on(icon='star')
@@ -38,7 +38,7 @@
         img.members__item__left__icon(v-else, :src="unknownMemberIconLink")
     .members__item__right
       .members__item__right__name
-        | [非公開入室]
+        | [비공개입장]
       .members__item__right__volumes
         VolumeMeter
   .members__item(v-for="i in (emptyNum)", :key="`empty-${i}`")

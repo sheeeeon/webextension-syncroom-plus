@@ -18,19 +18,19 @@
     div(v-if="isNoVacancy")
       template(v-if="isNotificationVacancyRoom")
         b-button(type="is-link is-light", expanded, @click="onRemoveNotificationVacancyRoom", icon-left="bell")
-          | 通知を解除
+          | 알림을 해제
       template(v-else)
         b-button(type="is-link is-light", expanded, @click="onSetNotificationVacancyRoom", icon-left="bell-slash")
-          | 空きが出たら通知を受け取る
+          | 자리가 비면 알림을 받기
 
     .buttons(v-else)
       b-button(type="is-light" @click="onOpenTentativeSyncroom")
-        | 仮入室
+        | 임시
 
       b-button.card__body__buttons__entry-button(v-if="needPasswd", type="is-dark" @click="onOpenSyncroom", icon-left="lock")
-        | ルームに入る
+        | 방에 입장
       b-button.card__body__buttons__entry-button(v-else, type="is-link" @click="onOpenSyncroom")
-        | ルームに入る
+        | 방에 입장
 </template>
 
 <script>
@@ -88,7 +88,7 @@ export default {
 
     onOpenSyncroom() {
       if (this.needPasswd) {
-        const pwPrompt = window.prompt('ルームパスワードを入力してください', '');
+        const pwPrompt = window.prompt('방 비밀번호를 입력하세요.', '');
 
         if (pwPrompt) {
           location.href = makeJoinUri(this.roomName, pwPrompt, 4, 2);
@@ -100,7 +100,7 @@ export default {
 
     onOpenTentativeSyncroom() {
       if (this.needPasswd) {
-        const pwPrompt = window.prompt('ルームパスワードを入力してください', '');
+        const pwPrompt = window.prompt('방 비밀번호를 입력하세요.', '');
 
         if (pwPrompt) {
           location.href = makeJoinUri(this.roomName, pwPrompt, 4, 3);

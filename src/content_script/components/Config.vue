@@ -4,51 +4,51 @@
     .modal-card-title
       b-icon(icon="cog")
       |
-      | 設定
+      | 설정
   .modal-card-body
     .section
       .subtitle
         b-icon(icon="cog")
         |
-        | 設定
+        | 설정
 
       b-switch(v-model="configAutoReload", type="is-info", @input="onInputAutoReload")
-        | 自動更新
+        | 자동 업데이트
 
       b-switch(v-model="configAnimation", type="is-info", @input="onInputAnimation")
-        | アニメーション
+        | 애니메이션
 
       hr
 
       .subtitle
         b-icon(icon="star")
         |
-        | お気に入りを管理（{{favoriteMembers.length}}）
+        | 즐겨찾기 관리（{{favoriteMembers.length}}）
       b-message(type="is-info", v-if="favoriteMembers.length === 0")
-        | お気に入りに追加されているメンバーがが1件もありません。
-        | メンバー名の横にあるお気に入り登録ボタン（
+        | 즐겨찾기에 추가된 멤버가 한 명도 없습니다.
+        | 멤버 이름 옆에 있는 즐겨찾기 등록 버튼（
         b-icon(icon="star")
-        | ）をクリックするとお気に入りに追加/削除できます。
+        | ）을 클릭하여 즐겨찾기를 추가/삭제할 수 있습니다.
       b-table(:data="favoriteMembers", v-else, narrowed, bordered)
 
-        b-table-column(label="名前", v-slot="props")
+        b-table-column(label="이름", v-slot="props")
           | {{ props.row.memberName }}
 
-        b-table-column(label="追加日時", v-slot="props")
+        b-table-column(label="추가한 날짜", v-slot="props")
           | {{ props.row.createdAt | moment('llll') }}
 
-        b-table-column(label="操作", v-slot="props")
+        b-table-column(label="조작", v-slot="props")
           b-button(type="is-danger", size="is-small", icon-left="trash", @click="confirmRemoveFavorite(props.row.memberName)")
-            | 削除
+            | 삭제
 
       hr
 
       .subtitle
         b-icon(icon="bell")
         |
-        | オンライン通知を管理（{{notificationOnlineMembers.length}}）
+        | 온라인 알림 관리（{{notificationOnlineMembers.length}}）
       b-message(type="is-info", v-if="notificationOnlineMembers.length === 0")
-        | 登録されているオンライン通知が1件もありません。
+        | 등록되어 있는 온라인 알림이 없습니다.
         | メンバー名の横にある通知ボタン（
         b-icon(icon="bell")
         | /
