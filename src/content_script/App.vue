@@ -8,20 +8,20 @@
       .level-left
       .level-right
         b-button(icon-left="cog", type="is-warning is-light", @click="openConfig")
-          | 設定
+          | 설정
 
     h2.SYNCROOM_PLUS-main__subtitle
-      | 公開ルーム一覧
+      | 공개 방 목록
       template(v-if="!this.$store.getters['config/autoReload']")
         b-button.SYNCROOM_PLUS-main__subtitle__button(type="is-success is-light", @click="fetchRooms")
           b-icon.SYNCROOM_PLUS-main__subtitle__button__icon(v-if="isLoading", custom-class="fa-spin", icon="sync-alt", size="is-small")
           b-icon.SYNCROOM_PLUS-main__subtitle__button__icon(v-else, icon="sync-alt", size="is-small")
-          | 更新
+          | 새로고침
 
     .filter-form
       .filter-form__field.custom--search-field
         b-input(
-          placeholder='キーワードを入力',
+          placeholder='키워드를 입력',
           v-model='keyword',
           type='search',
           icon="search",
@@ -30,17 +30,17 @@
       .filter-form__field
         b-field
           b-radio-button(v-model='roomFilter', native-value='all', @click.native='onChangeRoomFilter', type='is-info')
-            | すべて ({{ rooms.length }})
+            | 모두 ({{ rooms.length }})
           b-radio-button(v-model='roomFilter', native-value='only_unlocked', @click.native='onChangeRoomFilter', type='is-link')
             b-icon(icon='lock-open')
-            | 鍵なし ({{ unlockedRoomCount }})
+            | 비밀방 ({{ unlockedRoomCount }})
           b-radio-button(v-model='roomFilter', native-value='only_locked', @click.native='onChangeRoomFilter', type='is-dark')
             b-icon(icon='lock')
-            | 鍵あり ({{ lockedRoomCount }})
+            | 공개방 ({{ lockedRoomCount }})
 
       .filter-form__field
         b-button(type="is-info", tag="a", href="#testroom", icon-left="headphones-alt")
-          | 接続テストルームはこちら
+          | 접속 테스트 방은 여기로
 
     .buttons.custom--taglist
       template(v-for="tag in tags", v-if="roomFilter === 'all'")
@@ -93,14 +93,14 @@
       template(v-if="isEmptyFilteredRooms")
         template(v-if="keyword.length === 0")
           b-message(type="is-warning")
-            | ルームがありません 😔
+            | 방이 없습니다. 😔
         template(v-else)
           b-message(type="is-warning")
-            | ルームが見つかりませんでした 😔
+            | 방을 찾을 수 없습니다. 😔
 
     hr
 
-    h2#testroom.SYNCROOM_PLUS-main__subtitle 接続テストルーム
+    h2#testroom.SYNCROOM_PLUS-main__subtitle 접속 테스트 방
 
     .SYNCROOM_PLUS-main__rooms
       RoomCard(
@@ -110,13 +110,13 @@
         :members="testRoom.members",
         :needPasswd="testRoom.need_passwd",
         :numMembers="testRoom.num_members",
-        roomDesc="SYNCROOMの公式テストルームです。入室すると、音声が3秒後に返ってきますので、通信の確認をすることができます。",
-        :roomName="testRoom.room_name"
+        roomDesc="SYNCROOM 공식 테스트 방 입니다. 입장하면 소리가 3초 뒤에 다시 들려 통신 상태를 확인할 수 있습니다.",
+        roomName="접속 테스트 룸",
         :roomTags="testRoom.room_tags || []"
       )
 
   b-button#form-button(type="is-warning", icon-left="exclamation-triangle", @click="openContactFrom")
-    strong 要望・不具合報告はこちら
+    strong 건의사항/에러 신고
 
   Footer
 </template>

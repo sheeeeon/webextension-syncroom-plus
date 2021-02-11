@@ -24,8 +24,8 @@
           | 자리가 비면 알림을 받기
 
     .buttons(v-else)
-      b-button(type="is-light" @click="onOpenTentativeSyncroom")
-        | 임시
+      b-button.card__body__buttons__entry-button-e(type="is-light" @click="onOpenTentativeSyncroom")
+        | 임시 입장
 
       b-button.card__body__buttons__entry-button(v-if="needPasswd", type="is-dark" @click="onOpenSyncroom", icon-left="lock")
         | 방에 입장
@@ -159,6 +159,7 @@ export default {
     text-align: center
 
   &__body
+
     padding: 10px
     font-size: 12px
 
@@ -191,7 +192,9 @@ export default {
 
     &__buttons
       &__entry-button
-        width: 185px
+        width: 178px
+      &__entry-button-e
+        width: 94px
 
 .card.card--need_passwd
   background: #eaeaea

@@ -5,7 +5,7 @@
     frameborder="0",
     marginheight="0",
     marginwidth="0"
-  ) 読込中
+  ) 읽는 중
 </template>
 
 <script></script>
